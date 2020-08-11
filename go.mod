@@ -6,7 +6,7 @@ require (
 	github.com/Masterminds/semver/v3 v3.1.0
 	github.com/aquasecurity/fanal v0.0.0-20200528202907-79693bf4a058
 	github.com/aquasecurity/go-dep-parser v0.0.0-20190819075924-ea223f0ef24b
-	github.com/aquasecurity/trivy-db v0.0.0-20200715174849-fa5a3ca24b16
+	github.com/aquasecurity/trivy-db v0.0.0-20200811224233-d1affb77abea
 	github.com/caarlos0/env/v6 v6.0.0
 	github.com/cenkalti/backoff v2.2.1+incompatible
 	github.com/cheggaaa/pb/v3 v3.0.3
