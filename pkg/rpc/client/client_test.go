@@ -4,8 +4,10 @@ import (
 	"context"
 	"errors"
 	"testing"
+	"time"
 
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
+	"github.com/golang/protobuf/ptypes/timestamp"
 
 	"github.com/aquasecurity/trivy/rpc/common"
 
@@ -170,6 +172,12 @@ func TestScanner_Scan(t *testing.T) {
 										Layer: &common.Layer{
 											DiffId: "sha256:5216338b40a7b96416b8b9858974bbe4acc3096ee60acbc4dfb1ee02aecceb10",
 										},
+										LastModifiedDate: &timestamp.Timestamp{
+											Seconds: 1577840460,
+										},
+										PublishedDate: &timestamp.Timestamp{
+											Seconds: 978310860,
+										},
 									},
 								},
 							},
@@ -205,6 +213,8 @@ func TestScanner_Scan(t *testing.T) {
 										V3Score:  2.8,
 									},
 								},
+								LastModifiedDate: time.Date(2020, 01, 01, 01, 01, 00, 00, time.UTC),
+								PublishedDate:    time.Date(2001, 01, 01, 01, 01, 00, 00, time.UTC),
 							},
 							SeveritySource: "nvd",
 							Layer: ftypes.Layer{

@@ -111,6 +111,9 @@ func ConvertToRpcVulns(vulns []types.DetectedVulnerability) []*common.Vulnerabil
 			}
 		}
 
+		lastModifiedDate, _ := ptypes.TimestampProto(vuln.LastModifiedDate)
+		publishedDate, _ := ptypes.TimestampProto(vuln.PublishedDate)
+
 		rpcVulns = append(rpcVulns, &common.Vulnerability{
 			VulnerabilityId:  vuln.VulnerabilityID,
 			PkgName:          vuln.PkgName,
@@ -124,8 +127,10 @@ func ConvertToRpcVulns(vulns []types.DetectedVulnerability) []*common.Vulnerabil
 				Digest: vuln.Layer.Digest,
 				DiffId: vuln.Layer.DiffID,
 			},
-			Cvss:           cvssMap,
-			SeveritySource: vuln.SeveritySource,
+			Cvss:             cvssMap,
+			SeveritySource:   vuln.SeveritySource,
+			LastModifiedDate: lastModifiedDate,
+			PublishedDate:    publishedDate,
 		})
 	}
 	return rpcVulns
@@ -148,17 +153,22 @@ func ConvertFromRpcResults(rpcResults []*scanner.Result) []report.Result {
 				}
 			}
 
+			lastModifiedDate, _ := ptypes.Timestamp(vuln.LastModifiedDate)
+			publishedDate, _ := ptypes.Timestamp(vuln.PublishedDate)
+
 			vulns = append(vulns, types.DetectedVulnerability{
 				VulnerabilityID:  vuln.VulnerabilityId,
 				PkgName:          vuln.PkgName,
 				InstalledVersion: vuln.InstalledVersion,
 				FixedVersion:     vuln.FixedVersion,
 				Vulnerability: dbTypes.Vulnerability{
-					Title:       vuln.Title,
-					Description: vuln.Description,
-					Severity:    severity.String(),
-					CVSS:        cvssMap,
-					References:  vuln.References,
+					Title:            vuln.Title,
+					Description:      vuln.Description,
+					Severity:         severity.String(),
+					CVSS:             cvssMap,
+					References:       vuln.References,
+					LastModifiedDate: lastModifiedDate,
+					PublishedDate:    publishedDate,
 				},
 				Layer: ftypes.Layer{
 					Digest: vuln.Layer.Digest,
