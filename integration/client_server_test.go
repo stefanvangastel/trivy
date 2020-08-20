@@ -498,6 +498,7 @@ func compare(t *testing.T, wantFile, gotFile string) {
 	// Compare want and got
 	want, err := ioutil.ReadFile(wantFile)
 	assert.NoError(t, err)
+
 	got, err := ioutil.ReadFile(gotFile)
 	assert.NoError(t, err)
 
