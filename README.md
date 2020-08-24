@@ -1381,10 +1381,10 @@ Total: 3 (UNKNOWN: 0, LOW: 1, MEDIUM: 2, HIGH: 0, CRITICAL: 0)
 
 
 ## Client / Server
-Trivy has client/server mode. Trivy server has vulnerability database and Trivy client doesn't have to download vulnerability database. It is useful if you want to scan images at multiple locations and do not want to download the database at every location.
+Trivy has client/server mode. Trivy server has the vulnerability database and Trivy client doesn't have to download vulnerability database. It is useful if you want to scan images at multiple locations and don't want to download the database at every location.
 
 ### Server
-At first, you need to launch Trivy server. It downloads vulnerability database automatically and continue to fetch the latest DB in the background.
+At first, you need to launch Trivy server. It downloads the vulnerability database automatically and continues to fetch the latest DB in the background.
 ```
 $ trivy server --listen localhost:8080
 2019-12-12T15:17:06.551+0200    INFO    Need to update DB
